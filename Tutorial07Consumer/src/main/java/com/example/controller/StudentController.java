@@ -11,16 +11,22 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.example.dao.CourseDAOImpl;
 import com.example.model.CourseModel;
 import com.example.model.StudentModel;
+import com.example.service.CourseService;
 import com.example.service.StudentService;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 @Controller
 public class StudentController
 {
     @Autowired
     StudentService studentDAO;
-
+    @Autowired
+    CourseService courseDAO;
 
     @RequestMapping("/")
     public String index (Model model)
@@ -138,8 +144,7 @@ public class StudentController
     public String viewCourse (Model model,
             @PathVariable(value = "id") String id)
     {
-        CourseModel course = studentDAO.selectCourseInfo(id);
-
+        CourseModel course = courseDAO.selectCourseInfo(id);
         if (course != null) {
             model.addAttribute ("course", course);
             model.addAttribute("title_page", "View Course");
@@ -148,6 +153,15 @@ public class StudentController
             model.addAttribute ("id", id);
             return "not-found";
         }
+    }
+    
+    @RequestMapping("/course/viewall")
+    public String viewAllCourses (Model model){
+        List<CourseModel> courses = courseDAO.selectAllCourses();
+        log.info("size = " + courses.size());
+        model.addAttribute ("courses", courses);
+        model.addAttribute("title_page", "View All Course(s)");
+        return "viewall-course";
     }
 
 }
