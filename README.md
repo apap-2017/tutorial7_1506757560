@@ -1,0 +1,1 @@
+Source Code dari producer terdapat pada folder Tutorial07Producer / Source Code dari consumer terdapat pada folder Tutorial07Consumer / write up terdapat pada file write_up.pdf
