@@ -12,29 +12,31 @@
     </head>
     <body>
     	<div th:replace = "fragments/fragment :: header" ></div>
-        <h1>All Students</h1>
-    	<table id="myTable" class="display table">
-    		<thead>
-    			<th>No.</th>
-    			<th>NPM</th>
-    			<th>Name</th>
-    			<th>GPA</th>
-    			<th>Predicate</th>
-    			<th>Delete</th>
-    			<th>Update</th>
-    		</thead>
-    		<tbody>
-    			<tr th:each="student,iterationStatus: ${students}">
-		            <td th:text="${iterationStatus.count}">No. 1</td>
-			       	<td th:text="${student.npm}">Student NPM</td>
-			       	<td th:text="${student.name}">Student Name</td>
-			       	<td th:text="${student.gpa}">Student GPA</td>
-			       	<td th:text="${student.gpa>=3.49}? 'Cum Laude!' : 'Sangat Memuaskan!'"></td>
-			       	<td><a th:href="'/student/delete/' + ${student.npm}">Delete Data</a></td>
-			       	<td><a th:href="'/student/update/' + ${student.npm}">Update Data</a></td>
-		       	</tr>
-    		</tbody>
-    	</table>
+	    <div class="container">
+	        <h1>All Students</h1>
+	    	<table id="myTable" class="display table">
+	    		<thead>
+	    			<th>No.</th>
+	    			<th>NPM</th>
+	    			<th>Name</th>
+	    			<th>GPA</th>
+	    			<th>Predicate</th>
+	    			<th>Delete</th>
+	    			<th>Update</th>
+	    		</thead>
+	    		<tbody>
+	    			<tr th:each="student,iterationStatus: ${students}">
+			            <td th:text="${iterationStatus.count}">No. 1</td>
+				       	<td th:text="${student.npm}">Student NPM</td>
+				       	<td th:text="${student.name}">Student Name</td>
+				       	<td th:text="${student.gpa}">Student GPA</td>
+				       	<td th:text="${student.gpa>=3.49}? 'Cum Laude!' : 'Sangat Memuaskan!'"></td>
+				       	<td><a th:href="'/student/delete/' + ${student.npm}">Delete Data</a></td>
+				       	<td><a th:href="'/student/update/' + ${student.npm}">Update Data</a></td>
+			       	</tr>
+	    		</tbody>
+	    	</table>
+	    </div>
     	<div th:replace = "fragments/fragment :: footer" ></div>
     </body>
 </html>
